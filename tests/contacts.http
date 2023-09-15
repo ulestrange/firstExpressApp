@@ -11,20 +11,6 @@ GET http://localhost:3000/contacts HTTP/1.1
 GET http://localhost:3000/contacts?title=war HTTP/1.1
 
 
-########################
-###GET and individual contact
-## Expected result depends on whether the ID is in the collection if so an individual contact is
-## returned if not a 404 not found
-GET http://localhost:3000/contacts/63340cde5def8f9f17677bd8 HTTP/1.1
-
-###
-### POST Request for a contact with just a title
-## expeted result 201 Created with the id of the contact in location and a contact returned.
-POST http://localhost:3000/contacts HTTP/1.1
-content-type: application/json
-
-{ "title" : "a new contact"}
-
 ###
 ### POST Request for a contact 
 ## Expected result is ........
@@ -35,11 +21,3 @@ content-type: application/json
    "phonenumber" : "0871234567",
    "email": "jdoe123@gmail.com"}
 
-###
-### POST Request for a contact with a title - but a string for a year - this should fail
-## 400 with a message about year_written not being a number
-POST http://localhost:3000/contacts HTTP/1.1
-content-type: application/json
-
-{ "year_written": "this year",
-"title" : "The BEST"}
