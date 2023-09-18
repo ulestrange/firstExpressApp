@@ -19,6 +19,8 @@ app.get('/fruit/apples', (req, res) =>
 
 var contacts = [];
 
+app.use(express.json());
+
 app.post('/contacts', (req, res) => {
     const contact = req.body;
   
@@ -28,9 +30,21 @@ app.post('/contacts', (req, res) => {
     contacts.push(contact);
 
     res.send ('contact has been added to the database');
-    console.log(`contact name is ${contact.name} number of contact is ${contacts.length}`);
+    console.log(`contact name is ${contact.name} number of contacts is ${contacts.length}`);
 
 });
+
+app.get('/contacts', (req, res) => {
+    res.send(contacts);
+})
+
+app.get('/contacts/:id', (req,res) => {
+
+  let id = req.params.id; 
+  res.json(contacts[id]);
+})
+
+
 
 
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))
