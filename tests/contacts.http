@@ -1,20 +1,19 @@
 
+@port = 3000
+
 ###
-### For testing a plain get on the whole resource collection
+### For testing a simple get on the whole resource collection
 ## expected result an array of contacts
-GET http://localhost:3000/contacts HTTP/1.1
+GET http://localhost:{{port}}/contacts HTTP/1.1
 
 
-###
-#### test the collection filtering on title
-## expected result an array contains those contacts whose title inlcudes the word war
-GET http://localhost:3000/contacts?title=war HTTP/1.1
+
 
 
 ###
 ### POST Request for a contact 
 ## Expected result is ........
-POST http://localhost:3000/contacts HTTP/1.1
+POST http://localhost:{{port}}/contacts HTTP/1.1
 content-type: application/json
 
 { "name" : "John Doe",
@@ -26,7 +25,7 @@ content-type: application/json
 ###
 ### POST Request for a contact 
 ## Expected result is ........
-POST http://localhost:3000/contacts HTTP/1.1
+POST http://localhost:{{port}}/contacts HTTP/1.1
 content-type: application/json
 
 { "name" : "Mary Murphy",
@@ -35,27 +34,32 @@ content-type: application/json
 
 ###
 ### GET Request for all contact 
-## Expected result is ........
-GET http://localhost:3000/contacts HTTP/1.1
+# @name getAllContacts
+GET http://localhost:{{port}}/contacts HTTP/1.1
 
 
 ###
 ### GET Request for the first contact 
 ## Expected result is ........
-GET http://localhost:3000/contacts/0 HTTP/1.1
+
+@firstID = {{getAllContacts.response.body.$[0]._id }}
+
+GET http://localhost:{{port}}/contacts/{{firstID }}  HTTP/1.1
 
 
 ###
 ### GET Request for the 2nd contact 
 ## Expected result is ........
-GET http://localhost:3000/contacts/2 HTTP/1.1
+
+@secondID = {{getAllContacts.response.body.$[1]._id }}
+GET http://localhost:{{port}}/contacts/{{secondID}} HTTP/1.1
 
 ###
 ### GET Request for the the 68th contact 
 ## Expected result is ........
-GET http://localhost:3000/contacts/67 HTTP/1.1
+GET http://localhost:{{port}}/contacts/67 HTTP/1.1
 
 ###
 ### DELETE Request for the the 1st contact 
 ## Expected result is ........
-DELETE http://localhost:3000/contacts/0 HTTP/1.1
+DELETE http://localhost:{{port}}/contacts/0 HTTP/1.1
