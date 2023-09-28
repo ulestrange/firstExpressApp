@@ -1,0 +1,86 @@
+
+@port = 3000
+
+###
+### For testing a simple get on the whole resource collection
+## expected result an array of contacts
+GET http://localhost:{{port}}/api/v1/contacts HTTP/1.1
+
+
+
+
+
+###
+### POST Request for a contact 
+## Expected result is ........
+POST http://localhost:{{port}}/api/v1/contacts HTTP/1.1
+content-type: application/json
+
+{ "name" : "Johnathan Dowe",
+   "phonenumber" : "0871234567",
+   "email": "jdoe123@gmail.com"}
+
+###
+
+POST http://localhost:{{port}}/api/v1/contacts HTTP/1.1
+content-type: application/json
+
+{ "name" : "Una L'Estrange",
+   "phoneNumber" : "",
+   "email": "una.lestrange@atu.ie"}
+
+
+
+###
+### POST Request for a contact 
+## Expected result is ........
+POST http://localhost:{{port}}/api/v1/contacts HTTP/1.1
+content-type: application/json
+
+{ "name" : "Mary Murphy",
+   "phonenumber" : "087222222",
+   "email": "mmurphy@gmail.com"}
+
+###
+### GET Request for all contact 
+# @name getAllContacts
+GET http://localhost:{{port}}/api/v1/contacts HTTP/1.1
+
+
+###
+### GET Request for the first contact 
+## Expected result is ........
+
+@firstID = {{getAllContacts.response.body.$[0]._id }}
+
+GET http://localhost:{{port}}/api/v1/contacts/{{firstID }}  HTTP/1.1
+
+
+###
+### GET Request for the 2nd contact 
+## Expected result is ........
+
+@secondID = {{getAllContacts.response.body.$[1]._id }}
+GET http://localhost:{{port}}/api/v1/contacts/{{secondID}} HTTP/1.1
+
+###
+### GET Request for the the 68th contact 
+## Expected result is ........
+GET http://localhost:{{port}}/api/v1/contacts/67 HTTP/1.1
+
+###
+### DELETE Request for the the 1st contact 
+## Expected result is ........
+DELETE http://localhost:{{port}}/api/v1/contacts/{{firstID}} HTTP/1.1
+
+
+
+###
+### PUT Request for a contact 
+## Expected result is ........
+PUT http://localhost:{{port}}/api/v1/contacts/{{firstID}} HTTP/1.1
+content-type: application/json
+
+{
+   "phonenumber" : "updated087222222",
+   "email": "fdfsaf@gmail.com"}

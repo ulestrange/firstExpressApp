@@ -1,21 +1,25 @@
 const express = require('express')
+
+require('dotenv').config();
+// note this required a .env file which is not in github
+
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3001
 
-
-// Some silly routes for fun
-
-app.get('/', (req, res) => res.send('Hello World from Una!'))
-
-app.get('/fruit/apples', (req, res) =>
-  res.send('hello world, this is apples '));
-
-  app.get('/bananas', (req, res) =>
-  res.send('hello world, this is bananas'));
-
-// routes for the contact api
+// own  modules
+const db = require('./database');
+const contacts = require('./routes/contacts')
+const home = require('./routes/home')
 
 
 
-  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+
+app.use(express.json());
+
+app.use('/api/v1/contacts/', contacts)
+
+app.use('/', home)
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
