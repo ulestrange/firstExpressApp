@@ -1,11 +1,11 @@
 const mongoose  = require('mongoose');
 
-const contactSchema = new mongoose.Schema({
+const bookingSchema = new mongoose.Schema({
     name: String,
     phoneNumber: {type : String, default: "unknown"},
     email: String
 })
 
-const Contact = mongoose.model('contact', contactSchema);
+const Booking = mongoose.model('booking', bookingSchema);
 
-module.exports = {Contact}
+module.exports = {Booking}
