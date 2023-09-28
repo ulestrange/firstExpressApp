@@ -59,7 +59,7 @@ router.get('/:id', async (req,res) => {
       res.json(contact)
     }
     else{
-      res.status('404').json('not fount');
+      res.status('404').json('not found');
     }
   }
 catch (error)
@@ -67,8 +67,51 @@ catch (error)
   res.status(404).json('id is incorrect' + error)
 }
 
-  res.json(contacts[id]);
 })
 
+
+router.delete('/:id', async (req,res) => {
+
+  let id = req.params.id;
+  
+  try {
+    const contact = await Contact.findByIdAndDelete(id)
+
+    if (contact)
+    {
+      res.json(contact)
+    }
+    else{
+      res.status('404').json('not found');
+    }
+  }
+catch (error)
+{
+  res.status(404).json('id is incorrect' + error)
+}
+
+})
+
+router.put('/:id', async (req,res) => {
+
+  let id = req.params.id;
+  
+  try {
+    const contact = await Contact.findByIdAndUpdate(id, req.body)
+
+    if (contact)
+    {
+      res.json(contact)
+    }
+    else{
+      res.status('404').json('not found');
+    }
+  }
+catch (error)
+{
+  res.status(404).json('id is incorrect' + error)
+}
+
+})
 
 module.exports = router

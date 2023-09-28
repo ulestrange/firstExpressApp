@@ -16,7 +16,7 @@ GET http://localhost:{{port}}/api/v1/contacts HTTP/1.1
 POST http://localhost:{{port}}/api/v1/contacts HTTP/1.1
 content-type: application/json
 
-{ "name" : "John Doe",
+{ "name" : "Johnathan Dowe",
    "phonenumber" : "0871234567",
    "email": "jdoe123@gmail.com"}
 
@@ -34,7 +34,7 @@ content-type: application/json
 ###
 ### POST Request for a contact 
 ## Expected result is ........
-POST http://localhost:{{port}}/contacts HTTP/1.1
+POST http://localhost:{{port}}/api/v1/contacts HTTP/1.1
 content-type: application/json
 
 { "name" : "Mary Murphy",
@@ -71,4 +71,16 @@ GET http://localhost:{{port}}/api/v1/contacts/67 HTTP/1.1
 ###
 ### DELETE Request for the the 1st contact 
 ## Expected result is ........
-DELETE http://localhost:{{port}}/api/v1/contacts/0 HTTP/1.1
+DELETE http://localhost:{{port}}/api/v1/contacts/{{firstID}} HTTP/1.1
+
+
+
+###
+### PUT Request for a contact 
+## Expected result is ........
+PUT http://localhost:{{port}}/api/v1/contacts/{{firstID}} HTTP/1.1
+content-type: application/json
+
+{
+   "phonenumber" : "updated087222222",
+   "email": "fdfsaf@gmail.com"}
