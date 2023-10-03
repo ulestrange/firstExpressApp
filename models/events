@@ -1,0 +1,17 @@
+const mongoose  = require('mongoose');
+
+
+const bookingSchema = new mongoose.Schema({
+    dateMade : {type: Date, default : Date()},
+    contact: mongoose.Types.ObjectId
+})
+
+const eventSchema = new mongoose.Schema({
+    name: String,
+    dateOfEvent: Date,
+    bookings: [bookingSchema]
+})
+
+const Event = mongoose.model('event', eventSchema);
+
+module.exports = {Event}
