@@ -18,7 +18,8 @@ content-type: application/json
 
 { "name" : "Halloween Ball",
    "dateOfEvent": "2023-10-31",
-   "bookings": [{"contact" : "651c7254d635a775934cbe80"}]
+   "bookings": [{"contact" : "651c7254d635a775934cbe80"}],
+   "numberOfPlaces" : "fdasf"
 }
    
 

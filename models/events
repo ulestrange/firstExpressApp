@@ -7,9 +7,10 @@ const bookingSchema = new mongoose.Schema({
 })
 
 const eventSchema = new mongoose.Schema({
-    name: String,
+    name: {type: String, required: true},
     dateOfEvent: Date,
-    bookings: [bookingSchema]
+    bookings: [bookingSchema],
+    numberOfPlaces: Number
 })
 
 const Event = mongoose.model('event', eventSchema);
