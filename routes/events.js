@@ -32,19 +32,23 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
 
-    console.log('events')
+  const {name} = req.query;
+
+  let filter = {}
+
+  if (name)
+  {
+    filter.name = name
+  }
 
   try {
     const events = await Event
-      .find()
-
+      .find(filter)
     res.json(events);
-
   }
   catch (error) {
     res.status(500).json('db error ' + error)
   }
-
 
 })
 
