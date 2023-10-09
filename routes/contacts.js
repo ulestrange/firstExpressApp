@@ -1,15 +1,23 @@
 const express = require('express')
 
-const {Contact} = require('../models/contacts')
+const {Contact, ValidateContact} = require('../models/contacts')
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
     
 
+  let result = ValidateContact(req.body)
+
+  if (result.error) {
+    res.status(400).json(result.error);
+    return;
+  }
+
+
     let contact = new Contact(req.body);
 
-    console.log(contact) // to check what was received
+  //  console.log(contact) // to check what was received
    
     try {
 
