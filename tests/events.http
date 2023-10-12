@@ -58,11 +58,22 @@ GET http://localhost:{{port}}/api/v1/events HTTP/1.1
 
 
 
+###
+### GET Request for all event 
+# @name getAllEvents
+GET http://localhost:{{port}}/api/v1/events/?limit=2 HTTP/1.1
+
+
 
 ###
-### GET Request for filtering on name
-# @name getAllEvents
+### GET Request for filterd AllEvents
 GET http://localhost:{{port}}/api/v1/events?name=Lunch for Nov HTTP/1.1
+
+###
+### GET Request for filtering with reg  ex.
+# @name getAllEvents
+GET http://localhost:{{port}}/api/v1/events?places=fdasf HTTP/1.1
+
 
 
 

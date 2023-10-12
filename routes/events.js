@@ -32,18 +32,39 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
 
-  const {name} = req.query;
+  const {name, places, limit} = req.query;
+
+
+  let limitNumber = parseInt(limit)
+  if (isNaN(limitNumber)) {
+    limitNumber = 0
+
+  }
+
 
   let filter = {}
 
   if (name)
   {
-    filter.name = name
+    filter.name = { $regex: `${name}`, $options: 'i' }
   }
+
+  const numberOfPlaces = parseInt(places)
+
+
+  // if places does not parse to an int it is ignored.
+  if (!isNaN(numberOfPlaces)) {
+
+    filter.numberOfPlaces = numberOfPlaces
+  }
+
+
 
   try {
     const events = await Event
       .find(filter)
+      .limit(limitNumber)
+      .sort({numberOfPlaces : 1})
     res.json(events);
   }
   catch (error) {
