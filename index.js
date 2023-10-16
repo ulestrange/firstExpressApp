@@ -1,4 +1,6 @@
 const express = require('express')
+const https = require('https')
+const fs = require('fs')
 
 require('dotenv').config();
 // note this required a .env file which is not in github
@@ -26,3 +28,10 @@ app.use('/', home)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
+const serverOptions = {
+    key: fs.readFileSync('ssl/local.key'),
+    cert: fs.readFileSync('ssl/local.cert')
+  };
+
+https.createServer(serverOptions,app).listen(8080,() =>
+  console.log(`listening on 8080, don't forget the https`));
