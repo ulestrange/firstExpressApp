@@ -1,0 +1,17 @@
+
+
+function logging1 (req, res, next)
+{
+    console.log('middleware logging 1 called from route ' + req.originalUrl)
+    return next();
+}
+
+function logging2 (req, res, next)
+{
+    console.log('middleware logging 2 called from route ' + req.originalUrl)
+    return next();
+}
+
+
+
+module.exports = {logging1, logging2 }

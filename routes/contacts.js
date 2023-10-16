@@ -3,8 +3,9 @@ const express = require('express')
 const {Contact} = require('../models/contacts')
 
 const router = express.Router();
+const {logging2} = require('../middleware/logging')
 
-router.post('/', async (req, res) => {
+router.post('/', logging2, async (req, res) => {
     
 
     let contact = new Contact(req.body);

@@ -14,24 +14,25 @@ const contacts = require('./routes/contacts')
 const events = require('./routes/events')
 const home = require('./routes/home')
 
-
+const { validAPIKeyNeeded, logging1, logging2} = require('./middleware/logging')
 
 
 
 app.use(express.json());
 
-app.use('/api/v1/contacts/', contacts)
+
+app.use('/api/v1/contacts/',  contacts)
 
 app.use('/api/v1/events/', events)
 
-app.use('/', home)
+app.use('/', logging2, logging1, home)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-const serverOptions = {
-    key: fs.readFileSync('ssl/local.key'),
-    cert: fs.readFileSync('ssl/local.cert')
-  };
+// const serverOptions = {
+//     key: fs.readFileSync('ssl/local.key'),
+//     cert: fs.readFileSync('ssl/local.cert')
+//   };
 
-https.createServer(serverOptions,app).listen(8080,() =>
-  console.log(`listening on 8080, don't forget the https`));
+// https.createServer(serverOptions,app).listen(8080,() =>
+//   console.log(`listening on 8080, don't forget the https`));
