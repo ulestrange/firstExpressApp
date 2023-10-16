@@ -17,7 +17,7 @@ POST http://localhost:{{port}}/api/v1/contacts HTTP/1.1
 content-type: application/json
 
 { "name" : "Jeff Bezos",
-   "phoneNumber" : "0881112222",
+   "phoneNumber" : "{$ne : 0881112222}",
    "extraField": "trying to hack"}
 
 ###
