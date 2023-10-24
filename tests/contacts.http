@@ -16,9 +16,9 @@ GET http://localhost:{{port}}/api/v1/contacts HTTP/1.1
 POST http://localhost:{{port}}/api/v1/contacts HTTP/1.1
 content-type: application/json
 
-{ "name" : "Johnathan Dowe",
-   "phonenumber" : "0871234567",
-   "email": "jdoe123@gmail.com"}
+{ "name" : "Jeff Bezos",
+   "phoneNumber" : "0881112222",
+   "extraField": "trying to hack"}
 
 ###
 
