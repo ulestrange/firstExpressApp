@@ -1,0 +1,118 @@
+
+@port = 3000
+
+###
+### For testing a simple get on the whole resource collection
+## expected result an array of events
+GET http://localhost:{{port}}/api/v1/events HTTP/1.1
+
+
+
+
+
+###
+### POST Request for a event 
+## Expected result is ........
+POST http://localhost:{{port}}/api/v1/events HTTP/1.1
+content-type: application/json
+
+{ "name" : "Halloween Ball",
+   "dateOfEvent": "2023-10-31",
+   "bookings": [{"contact" : "651c7254d635a775934cbe80"}],
+   "numberOfPlaces" : 8
+}
+   
+
+###
+
+###
+### POST Request for a event 
+## Expected result is ........
+POST http://localhost:{{port}}/api/v1/events HTTP/1.1
+content-type: application/json
+
+{ "name" : "XMAS fun",
+   "dateOfEvent": "2023-12-12",
+   "bookings": [],
+   "numberOfPlaces" : 16
+}
+
+  ###
+### POST Request for a event 
+## Expected result is ........
+POST http://localhost:{{port}}/api/v1/events HTTP/1.1
+content-type: application/json
+
+{ "name" : "Lunch for Nov",
+   "dateOfEvent": "2023-11-02",
+   "bookings": [],
+   "numberOfPlaces" : 28
+} 
+
+
+
+###
+### GET Request for all event 
+# @name getAllEvents
+GET http://localhost:{{port}}/api/v1/events HTTP/1.1
+
+
+
+###
+### GET Request for all event 
+# @name getAllEvents
+GET http://localhost:{{port}}/api/v1/events/?limit=2 HTTP/1.1
+
+
+
+###
+### GET Request for filterd AllEvents
+GET http://localhost:{{port}}/api/v1/events?name=Lunch for Nov HTTP/1.1
+
+###
+### GET Request for filtering with reg  ex.
+# @name getAllEvents
+GET http://localhost:{{port}}/api/v1/events?places=fdasf HTTP/1.1
+
+
+
+
+###
+### GET Request for the first event 
+## Expected result is ........
+
+@firstID = {{getAllEvents.response.body.$[0]._id }}
+
+GET http://localhost:{{port}}/api/v1/events/{{firstID }}  HTTP/1.1
+
+
+###
+### GET Request for the 2nd event 
+## Expected result is ........
+
+@secondID = {{getAllEvents.response.body.$[1]._id }}
+GET http://localhost:{{port}}/api/v1/events/{{secondID}} HTTP/1.1
+
+###
+### GET Request for the the 68th event 
+## Expected result is ........
+GET http://localhost:{{port}}/api/v1/events/67 HTTP/1.1
+
+###
+### DELETE Request for the the 1st event 
+## Expected result is ........
+DELETE http://localhost:{{port}}/api/v1/events/{{firstID}} HTTP/1.1
+
+
+
+###
+### PUT Request for a event 
+## Expected result is ........
+PUT http://localhost:{{port}}/api/v1/events/{{firstID}} HTTP/1.1
+content-type: application/json
+
+{ 
+   "bookings": [{"contact" : "651c7254d635a775934cbe80"},
+   {"contact" :  "65116b2728006d586523fe04"}]
+  
+}

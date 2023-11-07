@@ -9,6 +9,7 @@ const port = process.env.PORT || 3001
 // own  modules
 const db = require('./database');
 const contacts = require('./routes/contacts')
+const events = require('./routes/events')
 const home = require('./routes/home')
 
 
@@ -18,6 +19,8 @@ const home = require('./routes/home')
 app.use(express.json());
 
 app.use('/api/v1/contacts/', contacts)
+
+app.use('/api/v1/events/', events)
 
 app.use('/', home)
 
