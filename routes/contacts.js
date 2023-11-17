@@ -1,6 +1,7 @@
 const express = require('express')
 
 const {Contact} = require('../models/contacts')
+const {validateAuth0AccessToken} = require('../middleware/auth0.middleware')
 
 const router = express.Router();
 
@@ -30,7 +31,7 @@ router.post('/', async (req, res) => {
 
 });
 
-router.get('/', async (req, res) => {
+router.get('/', validateAuth0AccessToken, async (req, res) => {
 
 
   try {

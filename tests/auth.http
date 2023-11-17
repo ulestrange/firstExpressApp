@@ -1,0 +1,22 @@
+# @name loginusingAuth0
+POST https://dev-htjrdxyu2p87zjsm.us.auth0.com/oauth/token 
+content-type: application/json
+
+{"client_id":"LvX1WKoeNpIRUCAH3S6zzWF4sngkU4sA",
+"client_secret":"ytXEw27Dk2F11g85iPP3iiDudN_jPqAWOugg4ICdzSRveR-IPji7fbGJFtSCyaFR",
+"audience":"Una2023","grant_type":"client_credentials"}
+
+###
+
+GET http://localhost:3000/api/v1/contacts
+Authorization: Bearer {{loginusingAuth0.response.body.access_token}}
+
+###
+
+GET http://localhost:3000/api/v1/contacts
+
+
+
+
+
+
