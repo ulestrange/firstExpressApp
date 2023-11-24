@@ -48,7 +48,7 @@ router.get('/', validateAuth0AccessToken, async (req, res) => {
 
 })
 
-router.get('/:id', async (req,res) => {
+router.get('/:id', validateAuth0AccessToken, async (req,res) => {
 
   let id = req.params.id;
   

@@ -1,4 +1,4 @@
-const { auth, InvalidTokenError, UnauthorizedError } = 
+const { auth } = 
     require("express-oauth2-jwt-bearer");
 const dotenv = require("dotenv");
 
