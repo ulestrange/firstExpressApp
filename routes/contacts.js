@@ -48,9 +48,10 @@ router.get('/', async (req, res) => {
 
 })
 
-router.get('/:id',  async (req,res) => {
+router.get('/:id',   async (req,res) => {
 
   let id = req.params.id;
+  console.log( ' GET an id ' + id)
   
   try {
     const contact = await Contact.findById(id)
@@ -93,7 +94,7 @@ catch (error)
 
 })
 
-router.put('/:id', async (req,res) => {
+router.put('/:id', validateAuth0AccessToken, async (req,res) => {
 
   let id = req.params.id;
   
